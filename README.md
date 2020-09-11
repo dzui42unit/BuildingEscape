@@ -12,3 +12,4 @@
 
 - create a chunk generater blocks, something like a minecraft
 
+- get familiar with niagara particle system https://www.youtube.com/watch?v=RWl3ySXTY2c
