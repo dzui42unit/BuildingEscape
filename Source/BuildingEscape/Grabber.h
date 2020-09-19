@@ -19,14 +19,23 @@ class BUILDINGESCAPE_API UGrabber : public UActorComponent
 	GENERATED_BODY()
 
 private:
-	float 						Reach = 200.f;	
+	float 						Reach = 200.f;
+	
+	UPROPERTY()
 	UPhysicsHandleComponent*	PhysicsHandle = nullptr;
+	
+	UPROPERTY()
 	UInputComponent*			InputHandle = nullptr;
+	
 	void		 				GrabAction();
 	void						DropAction();
 	void						FindPhysicsHandleComponent();
 	void						SetInputHandleComponent();
+	
 	FHitResult					GetFirstPhysicsBodyInReach();
+	FVector 					GetPlayersReach() const;
+	// gets players world position
+	FVector						GetPlayersWorldPosition() const;
 	
 public:	
 	// Sets default values for this component's properties

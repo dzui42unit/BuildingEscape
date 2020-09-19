@@ -5,6 +5,10 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Engine/TriggerVolume.h"
+#include "Engine/World.h"
+#include "GameFramework/PlayerController.h"
+#include "Components/PrimitiveComponent.h"
+#include "Components/AudioComponent.h"
 #include "OpenDoor.generated.h"
 
 
@@ -32,10 +36,18 @@ private:
 	float DoorCloseSpeed = 1;
 
 	UPROPERTY(EditAnywhere)
-	ATriggerVolume*	PressurePlate;
+	ATriggerVolume*	PressurePlate = nullptr;
 
 	UPROPERTY(EditAnywhere)
-	AActor*			ActorThatOpened;
+	float			MassOpenDoor = 60.f;
+
+	float 			TotalActorsMass() const;
+
+	bool			DoorClosed = true;
+
+	UPROPERTY()
+	UAudioComponent*	AudioComponent = nullptr;
+
 
 public:	
 	// Sets default values for this component's properties
@@ -50,4 +62,6 @@ public:
 	virtual void	TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	void			OpenDoor(float DeltaTime);
 	void			CloseDoor(float DeltaTime);
+	void			SetupAudioComponent();
+	bool			CheckPressurePlate() const;
 };
